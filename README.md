@@ -9,9 +9,11 @@ Arsitektur MVP memisahkan aplikasi menjadi tiga lapisan utama: Model, View, dan 
 
 Pada fitur Pembalap, Model terdiri dari dua file: Pembalap.php yang mendefinisikan struktur data pembalap, dan TabelPembalap.php yang menangani query database seperti mengambil daftar pembalap, menambah, mengedit, atau menghapus data. Presenter (PresenterPembalap.php) menerima permintaan dari routing (index.php), kemudian meminta data dari Model dan meneruskannya ke View (ViewPembalap.php). View kemudian memproses hasil tersebut menjadi HTML di template skin.html dan form.html.
 
-Fitur Circuit bekerja dengan pola yang sama. Circuit.php menjadi class data yang menyimpan atribut seperti nama circuit, lokasi, dan panjang lintasan. TabelCircuit.php menangani seluruh proses CRUD di tabel circuit. Presenter (PresenterCircuit.php) menjadi perantara yang mengatur alur kerja ketika user membuka halaman daftar circuit, menambah data, atau mengedit data. View (ViewCircuit.php) bertugas menampilkan hasil yang sudah dirangkai Presenter ke dalam file template skincircuit.html dan formcircuit.html.
+Fitur Circuit bekerja dengan pola yang sama. Circuit.php menjadi class data yang menyimpan atribut seperti nama circuit, lokasi, dan panjang lintasan. TabelCircuit.php menangani seluruh proses CRUD di tabel circuit. Presenter (PresenterCircuit.php) menjadi perantara yang mengatur alur kerja ketika user membuka halaman daftar circuit, menambah data, atau mengedit data. View (ViewCircuit.php) bertugas menampilkan hasil yang sudah dirangkai Presenter ke dalam file template skincircuit.html dan formcircuit.html, Template HTML (skin.html, skincircuit.html, form.html, dan formcircuit.html) juga berperan besar dalam menjaga agar View tetap bersih dari logika PHP yang berat.
 
 semua alur aplikasi dikendalikan melalui index.php sebagai router utama. File ini menentukan presenter mana yang harus dijalankan berdasarkan parameter screen di URL. Misalnya, screen=pembalap memanggil PresenterPembalap, sedangkan screen=circuit memanggil PresenterCircuit.
+
+Secara keseluruhan, alur MVP pada pembalap dan circuit berjalan seperti ini: View → Presenter → Model → Presenter → View. User meminta halaman → Presenter menerima perintah → Presenter memanggil Model untuk mengambil atau memproses data → Model mengembalikan hasil ke Presenter → Presenter mengirim data ke View → View me-render HTML untuk ditampilkan ke user.
 
 
 
